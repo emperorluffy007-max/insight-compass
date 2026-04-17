@@ -51,7 +51,7 @@ export function TrendChart() {
                 fontSize: 12,
                 color: "var(--foreground)",
               }}
-              formatter={(v: number) => [`${v}%`, "Complaint rate"]}
+              formatter={(v) => [`${v}%`, "Complaint rate"]}
             />
             <Area
               type="monotone"
