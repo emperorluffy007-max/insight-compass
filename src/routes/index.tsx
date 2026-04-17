@@ -1,26 +1,35 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { DashboardLayout } from "@/components/DashboardLayout";
+import { KpiRibbon } from "@/components/KpiRibbon";
+import { AlertBanner } from "@/components/AlertBanner";
+import { RecommendationsList } from "@/components/RecommendationsList";
+import { SentimentTable } from "@/components/SentimentTable";
+import { TrendChart } from "@/components/TrendChart";
 
 export const Route = createFileRoute("/")({
-  component: Index,
+  component: Dashboard,
+  head: () => ({
+    meta: [
+      { title: "Dashboard · ReviewIQ" },
+      { name: "description", content: "Real-time customer review intelligence, anomaly detection, and AI recommendations." },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Dashboard() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <DashboardLayout>
+      <KpiRibbon />
+      <AlertBanner />
+      <div className="grid gap-6 xl:grid-cols-5">
+        <div className="xl:col-span-3">
+          <RecommendationsList />
+        </div>
+        <div className="xl:col-span-2">
+          <TrendChart />
+        </div>
+      </div>
+      <SentimentTable />
+    </DashboardLayout>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
